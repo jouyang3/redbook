@@ -7,6 +7,7 @@ class FirstProgram : public OpenGLWindow
 {
 public:
     FirstProgram(QWindow* parent = 0);
+    ~FirstProgram();
 
     void initialize();
     void render();

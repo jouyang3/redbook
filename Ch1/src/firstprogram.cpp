@@ -11,10 +11,23 @@ FirstProgram::FirstProgram(QWindow *parent)
     fprintf(stderr, "[firstprogram.cpp] constructor called.\n");
 }
 
+FirstProgram::~FirstProgram(){
+    glDeleteVertexArrays(NumVAOs, VAOs);
+}
+
 void FirstProgram::initialize(){
     fprintf(stderr, "[firstprogram.cpp] initialization called.\n");
+    fprintf(stderr, "[firstprogram.cpp] NumVAOs %i.\n", sizeof(VAOs));
+
+    //Creates+Obtain 1 Unused VAO name, and make the name current + initialize to default state
     glGenVertexArrays(NumVAOs, VAOs);
+
+    //Creates a Vertex Array Object via the current VAO name and make this vertex array object active
     glBindVertexArray(VAOs[Triangles]);
+
+    //Test out glIsVertexArray
+    fprintf(stderr, "[firstprogram.cpp] Vertex Array Object Name '%i' is%sallocated.\n",
+            VAOs[Triangles], glIsVertexArray(VAOs[Triangles])?" ":" not ");
 
     fprintf(stderr, "[firstprogram.cpp] creating vertices.\n");
     GLfloat vertices[NumVertices][2] = {
